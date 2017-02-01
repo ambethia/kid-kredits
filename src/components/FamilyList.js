@@ -25,10 +25,7 @@ class FamilyList extends Component {
     this.props.mutate({ variables: {
       name: this.state.newFamilyName,
       ownerId: this.props.client.userId
-    }}).then(() => {
-      console.log('done')
-      // this.props.router.replace('/')
-    })
+    }})
   }
 
   families () {
