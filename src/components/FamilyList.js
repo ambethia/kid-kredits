@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
-export default class FamilyList extends Component {
+class FamilyList extends Component {
+
+  families () {
+    const { loading, user } = this.props.data
+    if (loading) { return <div>Loading</div> }
+    return <ul>
+      {user.families.map((family, i) =>
+        <li key={i}>{family.name}</li>
+      )}
+    </ul>
+  }
 
   render () {
-    return <h2>
-      Families
-    </h2>
+    return <div>
+      <h2>Families</h2>
+      {this.families()}
+      <hr />
+    </div>
   }
 }
+
+const FamiliesQuery = gql`query {
+  user {
+    families(orderBy: name_ASC) {
+      name
+    }
+  }
+}`
+
+export default graphql(FamiliesQuery)(FamilyList)
