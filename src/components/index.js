@@ -1,4 +1,5 @@
 export App from './App'
+export FamilyList from './FamilyList'
 export Home from './Home'
 export Layout from './Layout'
 export SessionButton from './SessionButton'

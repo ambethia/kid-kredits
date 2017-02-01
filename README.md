@@ -1,3 +1,4 @@
 # Kid Kredits
 
-yarn add auth0-lock babel-plugin-transform-decorators-legacy react-router
+yarn add --dev babel-plugin-transform-decorators-legacy
+yarn add auth0-lock react-router apollo-client react-apollo graphql-tag

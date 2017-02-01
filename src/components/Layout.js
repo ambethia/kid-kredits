@@ -9,6 +9,9 @@ export default class Layout extends Component {
         <h1>Kid Kredits</h1>
         <SessionButton />
       </header>
+      <main>
+        {this.props.children}
+      </main>
     </div>
   }
 }
