@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import { SessionButton } from '.'
 
 export default class Layout extends Component {
@@ -9,6 +10,11 @@ export default class Layout extends Component {
         <h1>Kid Kredits</h1>
         <SessionButton />
       </header>
+      <nav>
+        <ul>
+          <li><Link to='/families'>Families</Link></li>
+        </ul>
+      </nav>
       <main>
         {this.props.children}
       </main>

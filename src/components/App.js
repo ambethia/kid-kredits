@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Router, IndexRoute, Route, browserHistory } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
-import client from '../utils/client'
+import withAuth from '../utils/withAuth'
 
 import {
   Home,
@@ -9,16 +9,25 @@ import {
   FamilyList
 } from '.'
 
-export default class App extends Component {
+@withAuth
+class App extends Component {
+
+  requireAuth = (nextState, replace) => {
+    if (!this.props.auth.isSignedIn) {
+      replace({ pathname: '/' })
+    }
+  }
 
   render () {
-    return <ApolloProvider client={client}>
+    return <ApolloProvider client={this.props.client.apollo}>
       <Router history={browserHistory}>
         <Route path='/' component={Layout}>
           <IndexRoute component={Home} />
-          <Route path='families' component={FamilyList} />
+          <Route path='families' component={FamilyList} onEnter={this.requireAuth} />
         </Route>
       </Router>
     </ApolloProvider>
   }
 }
+
+export default App

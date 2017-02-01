@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { auth } from './auth'
+import { observer } from 'mobx-react'
+import auth from './auth'
+import client from './client'
 
 const withAuth = (ComposedComponent) => {
+  const Observed = observer(ComposedComponent)
   return class AuthenticatedComponent extends Component {
 
-    componentDidMount () {
-      // Ensure a re-render when our auth state changes.
-      auth.on('change', () => this.forceUpdate())
-    }
-
     render () {
-      return <ComposedComponent {...this.props} auth={auth} />
+      return <Observed
+        {...this.props}
+        auth={auth}
+        client={client}
+      />
     }
   }
 }

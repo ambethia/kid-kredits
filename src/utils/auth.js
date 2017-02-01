@@ -1,12 +1,13 @@
 import Auth0Lock from 'auth0-lock'
 import { browserHistory } from 'react-router'
-import { EventEmitter } from 'events'
+import { observable, autorun, computed } from 'mobx'
 import { AUTH0 } from './config'
-export default class Auth extends EventEmitter {
+
+class Auth {
+  @observable token
+  @observable profile
 
   constructor () {
-    super()
-
     const options = {
       // TODO: Customize Auth0 Widget
       auth: {
@@ -16,8 +17,8 @@ export default class Auth extends EventEmitter {
     }
 
     // Re-hydrate session on browser load/reload
-    this._token = window.localStorage.getItem('auth:token')
-    this._profile = JSON.parse(window.localStorage.getItem('auth:profile'))
+    this.token = window.localStorage.getItem('auth:token')
+    this.profile = JSON.parse(window.localStorage.getItem('auth:profile'))
 
     this.lock = new Auth0Lock(AUTH0.CLIENT_ID, AUTH0.CLIENT_DOMAIN, options)
     this.lock.on('authenticated', ({ idToken }) => {
@@ -25,7 +26,6 @@ export default class Auth extends EventEmitter {
       this.lock.getProfile(idToken, (error, profile) => {
         if (error) console.warn(error)
         this.profile = profile
-        this.emit('change')
       })
 
       // Return to the URL they were on before authenticating.
@@ -36,7 +36,7 @@ export default class Auth extends EventEmitter {
       }
     })
 
-    this.on('change', () => {
+    autorun(() => {
       if (this.isSignedIn) {
         window.localStorage.setItem('auth:token', this.token)
         window.localStorage.setItem('auth:profile', JSON.stringify(this.profile))
@@ -56,20 +56,11 @@ export default class Auth extends EventEmitter {
   signOut () {
     this.token = null
     this.profile = null
-    this.emit('change')
+    browserHistory.push('/')
   }
 
-  get isSignedIn () { return !!this.token }
-
-  get token () { return this._token }
-  set token (newToken) {
-    this._token = newToken
-  }
-
-  get profile () { return this._profile }
-  set profile (newProfile) {
-    this._profile = newProfile
-  }
+  @computed get isSignedIn () { return !!this.token }
 }
 
-export const auth = new Auth()
+const auth = new Auth()
+export default auth

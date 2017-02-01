@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withAuth from '../utils/withAuth'
 
 @withAuth
-export default class SessionButton extends Component {
+class SessionButton extends Component {
 
   handleClick = () => {
     const { auth } = this.props
@@ -18,3 +18,5 @@ export default class SessionButton extends Component {
     </button>
   }
 }
+
+export default SessionButton
