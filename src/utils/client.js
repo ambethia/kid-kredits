@@ -19,7 +19,10 @@ class Client {
       }
     }])
 
-    this.apollo = new ApolloClient({ networkInterface })
+    this.apollo = new ApolloClient({
+      dataIdFromObject: o => o.id,
+      networkInterface
+    })
 
     autorun(() => {
       if (auth.isSignedIn) {

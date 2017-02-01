@@ -1,0 +1,8 @@
+#import "../fragment/OwnedFamilies.gql"
+
+query UserOwnedFamilies {
+  user {
+    id
+    ...OwnedFamilies
+  }
+}

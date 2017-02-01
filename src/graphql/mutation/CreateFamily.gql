@@ -1,0 +1,10 @@
+#import "../fragment/OwnedFamilies.gql"
+
+mutation CreateFamily ($name: String!, $ownerId: ID) {
+  createFamily(name: $name, ownerId: $ownerId) {
+    owner {
+      id
+      ...OwnedFamilies
+    }
+  }
+}

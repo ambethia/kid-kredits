@@ -1,16 +1,42 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import withAuth from '../utils/withAuth'
 
+import CreateFamily from '../graphql/mutation/CreateFamily.gql'
+import UserOwnedFamilies from '../graphql/query/UserOwnedFamilies.gql'
+
 @withAuth
+@graphql(UserOwnedFamilies)
+@graphql(CreateFamily)
 class FamilyList extends Component {
+
+  state = {
+    newFamilyName: ''
+  }
+
+  _handleNewFamilyNameChanged = (event) => {
+    this.setState({
+      newFamilyName: event.target.value
+    })
+  }
+
+  _handleCreateFamily = (event) => {
+    event.preventDefault()
+    this.props.mutate({ variables: {
+      name: this.state.newFamilyName,
+      ownerId: this.props.client.userId
+    }}).then(() => {
+      console.log('done')
+      // this.props.router.replace('/')
+    })
+  }
 
   families () {
     const { loading, user } = this.props.data
     if (loading) { return <div>Loading</div> }
+
     return <ul>
-      {user.families.map((family, i) =>
+      {user.ownedFamilies.map((family, i) =>
         <li key={i}>{family.name}</li>
       )}
     </ul>
@@ -21,16 +47,19 @@ class FamilyList extends Component {
       <h2>Families</h2>
       {this.families()}
       <hr />
+      <h3>New Family</h3>
+
+      <form onSubmit={this._handleCreateFamily}>
+        <input
+          type='text'
+          placeholder='Family Name'
+          value={this.state.newFamilyName}
+          onChange={this._handleNewFamilyNameChanged}
+        />
+        <button type='submit'>Add</button>
+      </form>
     </div>
   }
 }
 
-const FamiliesQuery = gql`query {
-  user {
-    families(orderBy: name_ASC) {
-      name
-    }
-  }
-}`
-
-export default graphql(FamiliesQuery)(FamilyList)
+export default FamilyList
