@@ -38,7 +38,7 @@ class Client {
         }).then(({ data }) => {
           // If this user hasn't signed in before, store them in Graphcool:
           if (!data.user) {
-            client.mutate({
+            this.apollo.mutate({
               mutation: gql`
                 mutation ($token: String!, $name: String!, $email: String!){
                   createUser(authProvider: { auth0: { idToken: $token } }, name: $name, email: $email) {
