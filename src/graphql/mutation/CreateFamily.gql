@@ -1,12 +1,6 @@
-##i/mport "../fragment/OwnedFamilies.gql"
-
 mutation CreateFamily ($name: String!, $ownerId: ID) {
   createFamily(name: $name, ownerId: $ownerId) {
     id
     name
-    # owner {
-    #   id
-    #   ...OwnedFamilies
-    # }
   }
 }
