@@ -9,6 +9,7 @@
     "apollo-client": "^0.8.1",
     "auth0-lock": "^10.10.2",
     "graphql-tag": "^1.2.4",
+    "immutability-helper": "^2.1.1",
     "mobx": "^3.0.2",
     "mobx-react": "^4.1.0",
     "react": "^15.4.2",
