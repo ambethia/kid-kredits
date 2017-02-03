@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import update from 'immutability-helper'
 import withAuth from '../utils/withAuth'
 import { Modal } from '.'
 
-import Family from '../graphql/query/Family.gql'
-import RenameFamily from '../graphql/mutation/RenameFamily.gql'
+import {
+  queryFamily,
+  mutationRenameFamily
+} from '../graphql'
 
 @withAuth
-@graphql(Family, {
-  name: 'family',
-  options: (ownProps) => ({ variables: { id: ownProps.params.id } })
-})
-@graphql(RenameFamily, { name: 'renameFamily' })
+@graphql(...queryFamily({
+  options: props => ({ variables: { id: props.params.id } })
+}))
+@graphql(...mutationRenameFamily())
 class FamilyEdit extends Component {
 
   state = {
@@ -21,21 +21,19 @@ class FamilyEdit extends Component {
 
   // Update the text field when the query has loaded.
   componentWillReceiveProps (nextProps) {
-    const { loading, Family } = nextProps.family
+    const { loading, Family } = nextProps.queryFamily
     if (!loading) this.setState({ newFamilyName: Family.name })
   }
 
-  _handleNewFamilyNameChanged = (event) => {
-    this.setState({
-      newFamilyName: event.target.value
-    })
+  _newFamilyNameChanged = (event) => {
+    this.setState({ newFamilyName: event.target.value })
   }
 
-  _handleUpdateFamily = (event) => {
+  // this.props.params.id comes from the Router
+  _updateFamily = (event) => {
     event.preventDefault()
-    const { renameFamily, params, router, returnTo } = this.props
-    renameFamily({
-      // this.props.params.id comes from the Router
+    const { mutationRenameFamily, params, router, returnTo } = this.props
+    mutationRenameFamily({
       variables: {
         id: params.id,
         name: this.state.newFamilyName
@@ -44,14 +42,16 @@ class FamilyEdit extends Component {
   }
 
   content () {
-    if (this.props.family.loading) { return <div>Loading</div> }
+    const { loading, Family } = this.props.queryFamily
+    if (loading) { return <div>Loading</div> }
 
-    return <form onSubmit={this._handleUpdateFamily}>
+    return <form onSubmit={this._updateFamily}>
+      <h3>Rename {Family.name}</h3>
       <input
         type='text'
         placeholder='Family Name'
         value={this.state.newFamilyName}
-        onChange={this._handleNewFamilyNameChanged}
+        onChange={this._newFamilyNameChanged}
       />
       <button type='submit'>Update</button>
     </form>
