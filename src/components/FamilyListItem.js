@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { graphql } from 'react-apollo'
+import FamilyEdit from './FamilyEdit'
+import ui from '../ui'
 
 import {
   mutationDeleteFamily,
@@ -9,6 +11,11 @@ import {
 
 @graphql(...mutationDeleteFamily())
 class FamilyListItem extends Component {
+
+  _editFamily = (event) => {
+    event.preventDefault()
+    ui.displayModal(<FamilyEdit {...this.props} />)
+  }
 
   _deleteFamily = (event) => {
     event.preventDefault()
@@ -22,7 +29,7 @@ class FamilyListItem extends Component {
     const { id, name } = this.props
     return <li>
       <Link to={`/families/${id}`}>{name}</Link>
-      <Link to={`/families/${id}/edit`}>Edit</Link>
+      <a href='#' onClick={this._editFamily}>edit</a>
       <a href='#' onClick={this._deleteFamily}>&times;</a>
     </li>
   }

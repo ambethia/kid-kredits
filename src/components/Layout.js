@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import SessionButton from './SessionButton'
+import Menu from './Menu'
+import Modal from './Modal'
+import ui from '../ui'
 
 export default class Layout extends Component {
+
+  _displayMenu = () => {
+    ui.displayMenu()
+  }
 
   render () {
     return <div>
       <header>
         <h1>Kid Kredits</h1>
         <SessionButton />
+        <button onClick={this._displayMenu}>Menu</button>
       </header>
-      <nav>
-        <ul>
-          <li><Link to='/families'>Families</Link></li>
-        </ul>
-      </nav>
       <main>
         {this.props.children}
       </main>
+      <Menu />
+      <Modal />
     </div>
   }
 }

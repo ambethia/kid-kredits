@@ -1,29 +1,29 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import { observer } from 'mobx-react'
+import ui from '../ui'
 
-@withRouter
+@observer
 class Modal extends Component {
 
   _click = () => {
-    const { router, returnTo } = this.props
-    if (returnTo) {
-      router.push(returnTo)
-    } else {
-      router.goBack()
-    }
+    ui.dismissModal()
   }
 
   render () {
-    return <div className='modal'>
-      <div className='card'>
-        <header>
-          <button onClick={this._click}>&times;</button>
-        </header>
-        <div className='content'>
-          {this.props.children}
+    if (ui.modal) {
+      return <div className='modal'>
+        <div className='card'>
+          <header>
+            <button onClick={this._click}>&times;</button>
+          </header>
+          <div className='content'>
+            {ui.modal}
+          </div>
         </div>
       </div>
-    </div>
+    } else {
+      return null
+    }
   }
 }
 

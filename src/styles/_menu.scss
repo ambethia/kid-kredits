@@ -1,0 +1,52 @@
+.menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+  transition: background-color 200ms ease;
+
+  .drawer {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    transform: translateX(-200px);
+    box-shadow: 0 0 0 transparent;
+    transition: all 200ms ease;
+  }
+
+  header,
+  li {
+    text-align: right;
+    padding: 1em;
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  nav {
+    a:link,
+    a:visited {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  &.open {
+    right: 0;
+    background-color: transparentize(#333, 0.5);
+
+    .drawer {
+      transform: translateX(0);
+      box-shadow: 0 0 10em transparentize(black, 0.33);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import withAuth from '../utils/withAuth'
-import Modal from './Modal'
+import ui from '../ui'
 
 import {
   queryFamily,
@@ -10,7 +10,7 @@ import {
 
 @withAuth
 @graphql(...queryFamily({
-  options: props => ({ variables: { id: props.params.id } })
+  options: props => ({ variables: { id: props.id } })
 }))
 @graphql(...mutationRenameFamily())
 class FamilyEdit extends Component {
@@ -30,19 +30,18 @@ class FamilyEdit extends Component {
     this.setState({ newFamilyName: event.target.value })
   }
 
-  // this.props.params.id comes from the Router
   _updateFamily = (event) => {
     event.preventDefault()
-    const { mutationRenameFamily, params, router, returnTo } = this.props
+    const { mutationRenameFamily, id } = this.props
     mutationRenameFamily({
       variables: {
-        id: params.id,
+        id,
         name: this.state.newFamilyName
       }
-    }).then(() => router.push(returnTo))
+    }).then(() => ui.dismissModal())
   }
 
-  content () {
+  render () {
     const { loading, Family } = this.props.queryFamily
     if (loading) { return <div>Loading</div> }
 
@@ -56,10 +55,6 @@ class FamilyEdit extends Component {
       />
       <button type='submit'>Update</button>
     </form>
-  }
-
-  render () {
-    return <Modal>{this.content()}</Modal>
   }
 }
 

@@ -22,9 +22,7 @@ class App extends Component {
       <Router history={browserHistory}>
         <Route path='/' component={Layout}>
           <IndexRoute component={Home} />
-          <Route path='families' component={FamilyList} onEnter={this.requireAuth}>
-            <Route path=':id/edit' component={FamilyEdit} />
-          </Route>
+          <Route path='families' component={FamilyList} onEnter={this.requireAuth} />
         </Route>
       </Router>
     </ApolloProvider>
