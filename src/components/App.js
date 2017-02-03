@@ -3,12 +3,10 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
 import withAuth from '../utils/withAuth'
 
-import {
-  Home,
-  Layout,
-  FamilyList,
-  FamilyEdit
-} from '.'
+import Home from './Home'
+import Layout from './Layout'
+import FamilyList from './FamilyList'
+import FamilyEdit from './FamilyEdit'
 
 @withAuth
 class App extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { SessionButton } from '.'
+import SessionButton from './SessionButton'
 
 export default class Layout extends Component {
 

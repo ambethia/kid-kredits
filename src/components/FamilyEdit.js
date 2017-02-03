@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import withAuth from '../utils/withAuth'
-import { Modal } from '.'
+import Modal from './Modal'
 
 import {
   queryFamily,
@@ -19,7 +19,8 @@ class FamilyEdit extends Component {
     newFamilyName: ''
   }
 
-  // Update the text field when the query has loaded.
+  // This component has a query that depends on it's props, so
+  // we want to update the text field when the query has loaded.
   componentWillReceiveProps (nextProps) {
     const { loading, Family } = nextProps.queryFamily
     if (!loading) this.setState({ newFamilyName: Family.name })
@@ -58,9 +59,7 @@ class FamilyEdit extends Component {
   }
 
   render () {
-    return <Modal>
-      {this.content()}
-    </Modal>
+    return <Modal>{this.content()}</Modal>
   }
 }
 

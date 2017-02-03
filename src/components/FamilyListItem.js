@@ -10,7 +10,8 @@ import {
 @graphql(...mutationDeleteFamily())
 class FamilyListItem extends Component {
 
-  _deleteFamily = () => {
+  _deleteFamily = (event) => {
+    event.preventDefault()
     this.props.mutationDeleteFamily({
       variables: { id: this.props.id },
       refetchQueries: [{ query: queryUserOwnedFamilies(false) }]
@@ -20,8 +21,9 @@ class FamilyListItem extends Component {
   render () {
     const { id, name } = this.props
     return <li>
-      <Link to={`/families/${id}/edit`}>{name}</Link>
-      <button onClick={this._deleteFamily}>&times;</button>
+      <Link to={`/families/${id}`}>{name}</Link>
+      <Link to={`/families/${id}/edit`}>Edit</Link>
+      <a href='#' onClick={this._deleteFamily}>&times;</a>
     </li>
   }
 }
