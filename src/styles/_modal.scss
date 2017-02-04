@@ -1,4 +1,4 @@
-.modal {
+.Modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -10,7 +10,7 @@
   align-items: center;
 
   .card {
-    background-color: white;
+    background-color: $clouds;
     box-shadow: 0 0 10em transparentize(black, 0.33);
     min-width: 200px;
   }
@@ -20,25 +20,39 @@
     padding: 0.5em;
 
     button {
-      font-size: 1.5em;
+      font-size: 2rem;
       line-height: 0;
       background-color: transparent;
       padding: 0;
       border: none;
+      color: $wetAsphalt;
 
       &:focus,
       &:hover {
         outline: none;
-        color: #999;
+        color: $peterRiver;
       }
 
       &:active {
-        color: #666;
+        color: $alizarin;
       }
     }
   }
 
   .content {
     padding: 0 1em 1em;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  form {
+    text-align: center;
+
+    input[type=text] {
+      display: block;
+      margin: 0.5em 0;
+    }
   }
 }

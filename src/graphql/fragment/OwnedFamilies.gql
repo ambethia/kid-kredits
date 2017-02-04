@@ -1,6 +1,0 @@
-fragment OwnedFamilies on User {
-  ownedFamilies(orderBy: name_ASC) {
-    id
-    name
-  }
-}

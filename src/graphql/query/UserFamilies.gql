@@ -1,0 +1,14 @@
+query UserFamilies {
+  user {
+    id
+    families(orderBy: name_ASC) {
+      id
+      name
+      kids(orderBy: name_ASC) {
+        id
+        name
+        kredits
+      }
+    }
+  }
+}

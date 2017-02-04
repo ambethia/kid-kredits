@@ -1,4 +1,5 @@
 import Auth0Lock from 'auth0-lock'
+import IdTokenVerifier from 'idtoken-verifier'
 import { browserHistory } from 'react-router'
 import { observable, autorun, computed } from 'mobx'
 import { AUTH0 } from './config'
@@ -24,7 +25,14 @@ class Auth {
     this.lock.on('authenticated', ({ idToken }) => {
       this.token = idToken
       this.lock.getProfile(idToken, (error, profile) => {
-        if (error) console.warn(error)
+        if (error) {
+          this.lock.show({
+            flashMessage: {
+              type: 'error',
+              text: error.error_description
+            }
+          })
+        }
         this.profile = profile
       })
 
@@ -37,6 +45,7 @@ class Auth {
     })
 
     autorun(() => {
+      this.checkExpiration()
       if (this.isSignedIn) {
         window.localStorage.setItem('auth:token', this.token)
         window.localStorage.setItem('auth:profile', JSON.stringify(this.profile))
@@ -45,6 +54,18 @@ class Auth {
         window.localStorage.removeItem('auth:token')
       }
     })
+  }
+
+  checkExpiration () {
+    if (this.token) {
+      const jwt = new IdTokenVerifier().decode(this.token)
+      const now = new Date()
+      const exp = new Date(0)
+      exp.setUTCSeconds(jwt.payload.exp)
+      if (now > exp) {
+        console.log('expired', now, exp, jwt.payload.exp)
+      }
+    }
   }
 
   signIn () {

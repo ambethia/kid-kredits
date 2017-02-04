@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import SessionButton from './SessionButton'
+import { Link } from 'react-router'
+import DevTools from 'mobx-react-devtools'
 import Menu from './Menu'
 import Modal from './Modal'
+import Heading from './Heading'
+import Icon from './Icon'
 import ui from '../ui'
 
 export default class Layout extends Component {
@@ -11,17 +14,24 @@ export default class Layout extends Component {
   }
 
   render () {
-    return <div>
+    return <div className='Layout'>
       <header>
-        <h1>Kid Kredits</h1>
-        <SessionButton />
-        <button onClick={this._displayMenu}>Menu</button>
+        <div className='main'>
+          <Heading to='/'>Kid Kredits</Heading>
+        </div>
+        <button className='iconButton' onClick={this._displayMenu}>
+          <Icon glyph='bars' opt='3x' />
+        </button>
       </header>
       <main>
         {this.props.children}
       </main>
+      <footer>
+        <a href='https://github.com/ambethia/kid-kredits'><Icon glyph='github-alt' /></a>
+      </footer>
       <Menu />
       <Modal />
+      <DevTools />
     </div>
   }
 }

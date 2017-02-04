@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { graphql } from 'react-apollo'
 import FamilyEdit from './FamilyEdit'
+import Icon from './Icon'
 import ui from '../ui'
 
 import {
@@ -26,11 +27,17 @@ class FamilyListItem extends Component {
   }
 
   render () {
-    const { id, name } = this.props
-    return <li>
-      <Link to={`/families/${id}`}>{name}</Link>
-      <a href='#' onClick={this._editFamily}>edit</a>
-      <a href='#' onClick={this._deleteFamily}>&times;</a>
+    return <li className='FamilyListItem'>
+      <header>
+        <h3>{this.props.name}</h3>
+        <ul className='controls'>
+          <li><a href='#' onClick={this._editFamily}><Icon glyph='pencil' opt='fw' /></a></li>
+          <li><a href='#' onClick={this._deleteFamily}><Icon glyph='trash' opt='fw' /></a></li>
+        </ul>
+      </header>
+      <section>
+        Kids.
+      </section>
     </li>
   }
 }

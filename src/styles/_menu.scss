@@ -1,4 +1,6 @@
-.menu {
+@import 'utility';
+
+.Menu {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -7,7 +9,7 @@
   transition: background-color 200ms ease;
 
   .drawer {
-    background-color: #333;
+    background-color: $belizeHole;
     position: fixed;
     top: 0;
     bottom: 0;

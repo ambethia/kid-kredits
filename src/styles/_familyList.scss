@@ -1,0 +1,32 @@
+.FamilyList {
+  ul.familyList {
+    padding-left: 0;
+    list-style: none;
+
+    header {
+      position: relative;
+      line-height: 3em;
+
+      h3 {
+        margin: 0;
+      }
+
+      .controls {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      a {
+        padding-left: 1em;
+      }
+    }
+  }
+
+  .controls {
+    text-align: center;
+  }
+}

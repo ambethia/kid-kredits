@@ -1,0 +1,150 @@
+@import 'utility';
+
+$shadow: 0.15rem 0.15rem 0 $midnightBlue;
+
+.Layout {
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer {
+    text-align: center;
+    padding: 0.5em;
+  }
+
+  > header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    padding: 0.5em;
+    background-color: $amethyst;
+    border-bottom: 0.2rem solid $wisteria;
+
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+
+      a:link,
+      a:visited {
+        text-decoration: none;
+        color: $emerald;
+      }
+    }
+
+    .iconButton {
+      color: $emerald;
+      -webkit-text-stroke: 0.1rem $nephritis;
+      text-shadow: $shadow;
+    }
+  }
+}
+
+.iconButton {
+  background-color: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
+
+.Heading {
+  position: relative;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-shadow: $shadow;
+    letter-spacing: 0.08rem;
+
+    &::after {
+      content: attr(title);
+      font-family: 'Londrina Outline';
+      color: $nephritis;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-shadow: none;
+    }
+  }
+}
+
+.Home {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=text] {
+  padding: 0.25em;
+  font-family: $base-font-family;
+  font-size: 1.5rem;
+  background-color: $clouds;
+  color: $wetAsphalt;
+  border: thick solid $belizeHole;
+
+  &:focus {
+    background-color: lighten($clouds, 10%);
+    outline: none;
+  }
+}
+
+button.btn {
+  position: relative;
+
+  i {
+    margin-right: 0.5em;
+  }
+
+  font-family: $base-font-family;
+  font-size: 1.5rem;
+  background-color: $belizeHole;
+  color: $clouds;
+  border: none;
+  box-shadow: 0.2em 0.2em 0 $wetAsphalt;
+  padding: 0.5rem;
+  left: 0;
+  top: 0;
+  transition: all 200ms ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    left: -0.1em;
+    top: -0.1em;
+    box-shadow: 0.3em 0.3em 0 $wetAsphalt;
+  }
+
+  &:active {
+    left: 0.1em;
+    top: 0.1em;
+    box-shadow: 0.1em 0.1em 0 $wetAsphalt;
+  }
+}

@@ -31,14 +31,16 @@ class FamilyNew extends Component {
   }
 
   render () {
-    return <div>
+    return <div className='FamiliyCreate'>
+      <h3>Create a new Family</h3>
       <form onSubmit={this._createFamily}>
         <input
           type='text'
           value={this.state.newFamilyName}
           onChange={this._newFamilyNameChanged}
+          placeholder='Family Name'
         />
-        <button type='submit'>Create Family</button>
+        <button type='submit' className='btn'>Create</button>
       </form>
     </div>
   }

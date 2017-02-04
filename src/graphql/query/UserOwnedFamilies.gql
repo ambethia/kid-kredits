@@ -1,7 +1,7 @@
 query UserOwnedFamilies {
   user {
     id
-    ownedFamilies {
+    ownedFamilies(orderBy: name_ASC) {
       id
       name
     }

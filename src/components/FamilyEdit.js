@@ -45,16 +45,18 @@ class FamilyEdit extends Component {
     const { loading, Family } = this.props.queryFamily
     if (loading) { return <div>Loading</div> }
 
-    return <form onSubmit={this._updateFamily}>
-      <h3>Rename {Family.name}</h3>
-      <input
-        type='text'
-        placeholder='Family Name'
-        value={this.state.newFamilyName}
-        onChange={this._newFamilyNameChanged}
-      />
-      <button type='submit'>Update</button>
-    </form>
+    return <div className='FamiliyEdit'>
+      <form onSubmit={this._updateFamily}>
+        <h3>Rename "{Family.name}"</h3>
+        <input
+          type='text'
+          placeholder='Family Name'
+          value={this.state.newFamilyName}
+          onChange={this._newFamilyNameChanged}
+        />
+        <button type='submit' className='btn'>Update</button>
+      </form>
+    </div>
   }
 }
 
