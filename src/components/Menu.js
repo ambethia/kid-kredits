@@ -37,6 +37,11 @@ class Menu extends Component {
               </Link>
             </MenuItem>
             <MenuItem visible={auth.isSignedIn}>
+              <Link to='/log' onClick={this._dismiss}>
+                <Icon glyph='list' />
+              </Link>
+            </MenuItem>
+            <MenuItem visible={auth.isSignedIn}>
               <Link to='/families' onClick={this._dismiss}>
                 <Icon glyph='cog' />
               </Link>

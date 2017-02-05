@@ -1,0 +1,22 @@
+query RecentAdjustments {
+  user {
+    id
+    families {
+      id
+      kids {
+        id
+        name
+        adjustments(last: 20) {
+          id
+          amount
+          reason
+          user {
+            id
+            name
+            image
+          }
+        }
+      }
+    }
+  }
+}

@@ -18,4 +18,53 @@
   .up {
     color: $emerald;
   }
+
+  .info {
+    h3 {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      color: $wetAsphalt;
+      margin-top: 0;
+      font-size: 3rem;
+    }
+  }
+}
+
+.Adjustment {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input,
+    textarea,
+    button {
+      margin: 0.5rem 0;
+    }
+
+    textarea {
+      font-family: $base-font-family;
+      font-size: 1.5rem;
+      color: $wetAsphalt;
+      border: thick solid $belizeHole;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  h4 {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  &.add h4 {
+    color: $emerald;
+  }
+
+  &.remove h4 {
+    color: $pomegranate;
+  }
 }

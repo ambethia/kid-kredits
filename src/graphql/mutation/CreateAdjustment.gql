@@ -1,0 +1,9 @@
+mutation CreateAdjustment($newTotal: Int!, $amount: Int!, $reason: String!, $kidId: ID!, $userId: ID!) {
+  createAdjustment(amount: $amount, reason: $reason, kidId: $kidId, userId: $userId) {
+    id
+  }
+  # In an ideal world, the backend would be responsible for updating this field.
+  updateKid(id: $kidId, kredits: $newTotal) {
+    id
+  }
+}

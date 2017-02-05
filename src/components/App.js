@@ -5,6 +5,7 @@ import withAuth from '../utils/withAuth'
 import Home from './Home'
 import Layout from './Layout'
 import FamilyList from './FamilyList'
+import Transactions from './Transactions'
 
 @withAuth
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
         <Route path='/' component={Layout}>
           <IndexRoute component={Home} />
           <Route path='families' component={FamilyList} onEnter={this.requireAuth} />
+          <Route path='log' component={Transactions} onEnter={this.requireAuth} />
         </Route>
       </Router>
     </ApolloProvider>
