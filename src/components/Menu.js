@@ -10,32 +10,36 @@ import ui from '../ui'
 @withAuth
 class Menu extends Component {
 
-  _dismiss = (event) => {
+  _dismissBg = (event) => {
     if (event.target === event.currentTarget) {
       ui.dismissMenu()
     }
   }
 
-  _dismissButton = () => {
+  _dismiss = () => {
     ui.dismissMenu()
   }
 
   render () {
     const { auth } = this.props
-    return <div className={cx('Menu', { open: ui.menu })} onClick={this._dismiss}>
+    return <div className={cx('Menu', { open: ui.menu })} onClick={this._dismissBg}>
       <div className='drawer'>
         <header>
-          <button onClick={this._dismissButton} className='iconButton'>
+          <button onClick={this._dismiss} className='iconButton'>
             <Icon glyph='chevron-left' opt='2x' />
           </button>
         </header>
         <nav>
           <ul>
             <MenuItem>
-              <Link to='/' onClick={this._dismiss}>Home</Link>
+              <Link to='/' onClick={this._dismiss}>
+                <Icon glyph='home' />
+              </Link>
             </MenuItem>
             <MenuItem visible={auth.isSignedIn}>
-              <Link to='/families' onClick={this._dismiss}>Manage Families</Link>
+              <Link to='/families' onClick={this._dismiss}>
+                <Icon glyph='cog' />
+              </Link>
             </MenuItem>
             <MenuItem visible={auth.isSignedIn}>
               <SignOutButton />

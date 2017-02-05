@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import withAuth from '../utils/withAuth'
+import ui from '../ui'
 
 import {
   mutationCreateFamily,
@@ -27,6 +28,8 @@ class FamilyNew extends Component {
         name: this.state.newFamilyName
       },
       refetchQueries: [{ query: queryUserOwnedFamilies(false) }]
+    }).then(() => {
+      ui.dismissModal()
     })
   }
 

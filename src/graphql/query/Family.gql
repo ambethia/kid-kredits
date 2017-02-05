@@ -1,4 +1,4 @@
-query Family ($id: ID!) {
+query Family($id: ID!) {
   Family(id: $id) {
     id
     name

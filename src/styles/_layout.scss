@@ -1,6 +1,6 @@
 @import 'utility';
 
-$shadow: 0.15rem 0.15rem 0 $midnightBlue;
+$shadow: 0.1rem 0.1rem 0 $silver;
 
 .Layout {
   display: flex;
@@ -23,8 +23,8 @@ $shadow: 0.15rem 0.15rem 0 $midnightBlue;
     flex-direction: row-reverse;
     justify-content: flex-end;
     padding: 0.5em;
-    background-color: $amethyst;
-    border-bottom: 0.2rem solid $wisteria;
+    background-color: $peterRiver;
+    border-bottom: 0.2rem solid $belizeHole;
 
     .main {
       flex: 1;
@@ -35,17 +35,17 @@ $shadow: 0.15rem 0.15rem 0 $midnightBlue;
     h1 {
       margin: 0;
       font-size: 2rem;
+      letter-spacing: 0.12rem;
 
       a:link,
       a:visited {
         text-decoration: none;
-        color: $emerald;
+        color: $clouds;
       }
     }
 
     .iconButton {
-      color: $emerald;
-      -webkit-text-stroke: 0.1rem $nephritis;
+      color: $clouds;
       text-shadow: $shadow;
     }
   }
@@ -66,31 +66,9 @@ h3,
 h4,
 h5,
 h6 {
+  color: $belizeHole;
+  text-shadow: $shadow;
   text-align: center;
-}
-
-.Heading {
-  position: relative;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-shadow: $shadow;
-    letter-spacing: 0.08rem;
-
-    &::after {
-      content: attr(title);
-      font-family: 'Londrina Outline';
-      color: $nephritis;
-      position: absolute;
-      top: 0;
-      left: 0;
-      text-shadow: none;
-    }
-  }
 }
 
 .Home {
@@ -100,7 +78,8 @@ h6 {
   align-items: center;
 }
 
-input[type=text] {
+input[type=text],
+input[type=email] {
   padding: 0.25em;
   font-family: $base-font-family;
   font-size: 1.5rem;
@@ -114,6 +93,7 @@ input[type=text] {
   }
 }
 
+a.btn,
 button.btn {
   position: relative;
 
@@ -146,5 +126,9 @@ button.btn {
     left: 0.1em;
     top: 0.1em;
     box-shadow: 0.1em 0.1em 0 $wetAsphalt;
+  }
+
+  &.small {
+    font-size: 1rem;
   }
 }

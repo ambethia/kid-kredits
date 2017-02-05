@@ -1,0 +1,21 @@
+.Family .kids {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  list-style: none;
+}
+
+.Kid {
+  min-width: 80vw;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+
+  .down {
+    color: $pomegranate;
+  }
+
+  .up {
+    color: $emerald;
+  }
+}

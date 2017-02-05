@@ -1,6 +1,10 @@
-query UserFamilies {
+query UserFamilies($email: String!) {
   user {
     id
+    name
+    ownedFamilies {
+      id
+    }
     families(orderBy: name_ASC) {
       id
       name
@@ -8,6 +12,16 @@ query UserFamilies {
         id
         name
         kredits
+      }
+    }
+  }
+  allInvitations(filter: {email: $email}) {
+    id
+    family {
+      id
+      name
+      owner {
+        name
       }
     }
   }

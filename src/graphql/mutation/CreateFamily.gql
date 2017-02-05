@@ -1,5 +1,5 @@
-mutation CreateFamily ($ownerId: ID!, $name: String!) {
-  createFamily(ownerId: $ownerId, name: $name) {
+mutation CreateFamily($ownerId: ID!, $name: String!) {
+  createFamily(ownerId: $ownerId, name: $name, usersIds: [$ownerId]) {
     id
     name
   }

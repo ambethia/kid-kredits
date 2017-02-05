@@ -1,4 +1,4 @@
-mutation RenameFamily ($id: ID!, $name: String) {
+mutation RenameFamily($id: ID!, $name: String) {
   updateFamily(id: $id, name: $name) {
     id
     name

@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import DevTools from 'mobx-react-devtools'
 import Menu from './Menu'
 import Modal from './Modal'
-import Heading from './Heading'
 import Icon from './Icon'
 import ui from '../ui'
 
@@ -17,7 +16,7 @@ export default class Layout extends Component {
     return <div className='Layout'>
       <header>
         <div className='main'>
-          <Heading to='/'>Kid Kredits</Heading>
+          <h1><Link to='/'>Kid Kredits</Link></h1>
         </div>
         <button className='iconButton' onClick={this._displayMenu}>
           <Icon glyph='bars' opt='3x' />

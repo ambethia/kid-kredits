@@ -23,7 +23,11 @@ class FamilyList extends Component {
   // Renders the list items for our query
   families () {
     const { loading, user } = this.props.queryUserOwnedFamilies
-    if (loading) return <li className='loading'>Loading</li>
+    if (loading) return <li className='loadingText'>Loading</li>
+
+    if (user.ownedFamilies.length === 0) {
+      return <li className='loadingText'>Let's create your first family</li>
+    }
 
     return user.ownedFamilies.map((family, i) => {
       return <FamilyListItem {...family} key={i} />
@@ -32,11 +36,10 @@ class FamilyList extends Component {
 
   render () {
     return <div className='FamilyList'>
-      <h2>{this.title()}</h2>
+      <h2>Manage my {this.title()}</h2>
       <ul className='familyList'>
         {this.families()}
       </ul>
-
       <div className='controls'>
         <button className='btn' onClick={this._createFamily}>
           <Icon glyph='plus' />

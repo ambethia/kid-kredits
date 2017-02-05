@@ -4,6 +4,21 @@ query UserOwnedFamilies {
     ownedFamilies(orderBy: name_ASC) {
       id
       name
+      kids {
+        id
+        name
+      }
+      users {
+        id
+        name
+        email
+        image
+      }
+      invitations {
+        id
+        email
+        name
+      }
     }
   }
 }

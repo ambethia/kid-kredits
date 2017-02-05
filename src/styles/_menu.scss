@@ -9,36 +9,52 @@
   transition: background-color 200ms ease;
 
   .drawer {
-    background-color: $belizeHole;
+    background-color: $wetAsphalt;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    width: 200px;
-    transform: translateX(-200px);
+    width: 3em;
+    transform: translateX(-3em);
     box-shadow: 0 0 0 transparent;
     transition: all 200ms ease;
   }
 
   header,
   li {
-    text-align: right;
+    text-align: center;
     padding: 1em;
   }
 
   ul {
     padding-left: 0;
-
-    li {
-      list-style: none;
-    }
+    list-style: none;
   }
 
   nav {
-    a:link,
-    a:visited {
-      color: white;
-      text-decoration: none;
+    button,
+    a {
+      &:link,
+      &:visited {
+        font-size: 1.5rem;
+        font-family: $base-font-family;
+        color: $clouds;
+        text-decoration: none;
+        background-color: transparent;
+        border: none;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        color: lighten($clouds, 10%);
+      }
+
+      &:active {
+        color: $alizarin;
+      }
     }
   }
 
@@ -49,6 +65,14 @@
     .drawer {
       transform: translateX(0);
       box-shadow: 0 0 10em transparentize(black, 0.33);
+    }
+  }
+
+  button {
+    padding: 0;
+
+    i {
+      color: $clouds;
     }
   }
 }

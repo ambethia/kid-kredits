@@ -6,9 +6,7 @@ import ui from '../ui'
 @observer
 class Modal extends Component {
 
-  _dismiss = () => {
-    ui.dismissModal()
-  }
+  _dismiss = () => { ui.dismissModal() }
 
   render () {
     if (ui.modal) {

@@ -62,9 +62,7 @@ class Auth {
       const now = new Date()
       const exp = new Date(0)
       exp.setUTCSeconds(jwt.payload.exp)
-      if (now > exp) {
-        console.log('expired', now, exp, jwt.payload.exp)
-      }
+      if (now > exp) this.signOut()
     }
   }
 

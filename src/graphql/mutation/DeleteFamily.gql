@@ -1,4 +1,4 @@
-mutation DeleteFamily ($id: ID!) {
+mutation DeleteFamily($id: ID!) {
   deleteFamily(id: $id) {
     id
   }

@@ -43,7 +43,7 @@ class FamilyEdit extends Component {
 
   render () {
     const { loading, Family } = this.props.queryFamily
-    if (loading) { return <div>Loading</div> }
+    if (loading) { return <div className='loadingText'>Loading</div> }
 
     return <div className='FamiliyEdit'>
       <form onSubmit={this._updateFamily}>
