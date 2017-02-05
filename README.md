@@ -1,7 +1,11 @@
 # Kid Kredits
 
-```
-yarn add --dev babel-plugin-transform-decorators-legacy
-yarn add auth0-lock react-router mobx mobx-react apollo-client react-apollo graphql-tag immutability-helper
-apm install graphql-autocomplete language-graphql
-```
+An app for managing virtual "Kredits" your kids can earn and spend.
+
+Built with:
+
+- React
+- Mobx
+- GraphQL (Apollo Client)
+
+Uses [Graphcool](https://graph.cool) as a back end and [Auth0](https://auth0.com) for authentication.

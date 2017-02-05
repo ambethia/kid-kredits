@@ -81,7 +81,7 @@ class FamilyListItem extends Component {
       </header>
       <section>
         <h4>Kids</h4>
-        <ul>
+        <ul className='kids'>
           {this.kids()}
         </ul>
         <div className='controls'>

@@ -62,7 +62,11 @@ class Auth {
       const now = new Date()
       const exp = new Date(0)
       exp.setUTCSeconds(jwt.payload.exp)
-      if (now > exp) this.signOut()
+      if (now > exp) {
+        this.signOut()
+        return false
+      }
+      return true
     }
   }
 
@@ -78,7 +82,7 @@ class Auth {
     browserHistory.push('/')
   }
 
-  @computed get isSignedIn () { return !!this.token }
+  @computed get isSignedIn () { return this.token && this.profile }
 }
 
 const auth = new Auth()

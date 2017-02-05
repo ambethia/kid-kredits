@@ -43,5 +43,12 @@
       border-radius: 50%;
       box-shadow: 0.1rem 0.1rem 0 $silver;
     }
+
+    .kids {
+      margin: 1em 0;
+      padding-left: 0;
+      list-style: none;
+      text-align: center;
+    }
   }
 }
