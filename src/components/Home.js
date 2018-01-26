@@ -5,7 +5,6 @@ import Families from './Families'
 
 @withAuth
 export default class Home extends Component {
-
   content () {
     if (this.props.auth.isSignedIn) {
       return <Families />
@@ -15,8 +14,10 @@ export default class Home extends Component {
   }
 
   render () {
-    return <div className='Home'>
-      {this.content()}
-    </div>
+    return (
+      <div className='Home'>
+        {this.content()}
+      </div>
+    )
   }
 }

@@ -5,18 +5,17 @@ import ui from '../ui'
 
 @withAuth
 class SignInButton extends Component {
-
   _signOut = () => {
     this.props.auth.signOut()
     ui.dismissMenu()
   }
 
   render () {
-    return <button
-      className='SignOutButton iconButton'
-      onClick={this._signOut}>
-      <Icon glyph='sign-out' opt='2x' />
-    </button>
+    return (
+      <button className='SignOutButton iconButton' onClick={this._signOut}>
+        <Icon glyph='sign-out' opt='2x' />
+      </button>
+    )
   }
 }
 
